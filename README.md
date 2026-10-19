@@ -11,6 +11,30 @@ so all our apps feel like one product.
 - Light and dark mode, respects "reduce motion", screen-reader friendly (`role="status"`).
 - No runtime dependencies. About 2 KB gzipped.
 
+![The Katyayani Organics loader](docs/loader.gif)
+
+## What it looks like
+
+Pick the variant that matches the moment. Code for each one is further down.
+
+| Moment | Use | Preview |
+| --- | --- | --- |
+| A page, tab or section is loading | `<BrandLoader message="Loading orders…" />` | ![Default loader](docs/loader.gif) |
+| The whole app / a route is loading, or sign-in | `<BrandLoader fullScreen />` | ![Full-screen loader](docs/loader-fullscreen.gif) |
+| Something inside a card or panel is loading | `<BrandLoader size="sm" message="Loading calendar…" />` | ![Small loader inside a card](docs/loader-sm.gif) |
+| Saving, uploading or redirecting (block the page) | `<BrandLoader overlay message="Saving…" />` | ![Overlay loader on top of a page](docs/loader-overlay.gif) |
+| The app is in dark mode | nothing to do: it follows `.dark` on a parent (or force it with `tone="dark"`) | ![Dark mode loader](docs/loader-dark.gif) |
+
+**UI rules of thumb**
+
+- One loader per screen. If the whole page is loading, use `fullScreen` and don't add small ones inside it.
+- Write what is loading, in plain words with an ellipsis: "Loading orders…", "Signing you in…", "Saving…".
+  Use `message=""` only where the context is obvious.
+- `size="sm"` anywhere smaller than about 400 px wide (cards, side panels, dialogs).
+- `overlay` only while the user must wait for something they started (save, upload, payment, redirect).
+  Remove it as soon as the work finishes, and on errors.
+- Don't use it for buttons or tiny spots. A disabled button with "Saving…" text is enough there.
+
 ## Install
 
 From the org repo (recommended; pin a version tag):
@@ -154,6 +178,7 @@ npm install
 npm test          # 7 tests: React markup + the web component
 npm run build     # writes dist/ (commit it; git installs use it as-is)
 npm run demo      # http://localhost:4790/demo/ shows every variant, light and dark
+npm run gifs      # re-records the README previews in docs/ (needs Chrome or Edge, and ffmpeg)
 ```
 
 Then bump `version` in `package.json`, commit, tag (`git tag v1.1.0`) and push the tag. Apps update by

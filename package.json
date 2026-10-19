@@ -38,7 +38,8 @@
     "pretest": "node scripts/gen-css.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "demo": "npm run build && npx --yes serve -l 4790 ."
+    "demo": "npm run build && npx --yes serve -l 4790 .",
+    "gifs": "npm run build && node scripts/record-gifs.mjs"
   },
   "peerDependencies": {
     "react": ">=17"
@@ -52,6 +53,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.7",
     "happy-dom": "^15.11.7",
+    "playwright-core": "^1.63.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tsup": "^8.3.5",
