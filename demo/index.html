@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Katyayani Loader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="../dist/ko-loader.global.js"></script>
+  <style>
+    body { margin: 0; font-family: ui-sans-serif, system-ui, sans-serif; background: #fff; color: #1f2937; }
+    body.dark { background: #0b0f17; color: #e5e7eb; }
+    header { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 16px; border-bottom: 1px solid #e5e7eb; }
+    body.dark header { border-color: #1f2937; }
+    h1 { font-size: 16px; margin: 0; }
+    button { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 6px; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
+    main { display: grid; gap: 16px; padding: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    section { border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; }
+    body.dark section { border-color: #1f2937; }
+    section h2 { font-size: 12px; font-weight: 600; margin: 0; padding: 10px 12px; border-bottom: 1px solid inherit; font-family: ui-monospace, monospace; opacity: .7; }
+    .blue { --ko-loader-color: #2563eb; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>@katyayani/loader</h1>
+    <div style="display:flex;gap:8px">
+      <button id="theme">Dark mode</button>
+      <button id="overlay">Try the overlay (2 s)</button>
+    </div>
+  </header>
+  <main>
+    <section><h2>&lt;ko-loader&gt;</h2><ko-loader></ko-loader></section>
+    <section><h2>size="sm" (cards, panels)</h2><ko-loader size="sm" message="Loading calendar…"></ko-loader></section>
+    <section><h2>message="" (no text)</h2><ko-loader size="sm" message=""></ko-loader></section>
+    <section><h2>tone="dark" (forced)</h2><div style="background:#0b0f17"><ko-loader size="sm" tone="dark" message="Signing you in…"></ko-loader></div></section>
+    <section class="blue"><h2>--ko-loader-color override</h2><ko-loader size="sm" message="Custom colour"></ko-loader></section>
+  </main>
+  <script>
+    document.getElementById("theme").onclick = (e) => {
+      const dark = document.body.classList.toggle("dark");
+      e.target.textContent = dark ? "Light mode" : "Dark mode";
+    };
+    document.getElementById("overlay").onclick = () => {
+      const hide = KoLoader.showBrandLoader("Saving…");
+      setTimeout(hide, 2000);
+    };
+  </script>
+</body>
+</html>

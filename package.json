@@ -1,0 +1,61 @@
+{
+  "name": "@katyayani/loader",
+  "version": "1.0.0",
+  "description": "The Katyayani Organics brand loader: React component, <ko-loader> web component and plain CSS.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./element": {
+      "types": "./dist/element.d.ts",
+      "import": "./dist/element.js",
+      "require": "./dist/element.cjs"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./global": "./dist/ko-loader.global.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": [
+    "./dist/element.js",
+    "./dist/element.cjs",
+    "./dist/ko-loader.global.js",
+    "*.css"
+  ],
+  "scripts": {
+    "build": "node scripts/gen-css.mjs && tsup && node scripts/copy-css.mjs",
+    "pretest": "node scripts/gen-css.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "demo": "npm run build && npx --yes serve -l 4790 ."
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.7",
+    "happy-dom": "^15.11.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}
